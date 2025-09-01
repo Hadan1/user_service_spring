@@ -3,6 +3,7 @@ package user_service_spring.aston.service;
 import org.springframework.stereotype.Service;
 import user_service_spring.aston.dto.UserDto;
 import user_service_spring.aston.dto.mapping.UserMapping;
+import user_service_spring.aston.notification.service.UserKafkaProducer;
 import user_service_spring.aston.repository.User;
 import user_service_spring.aston.repository.UserRepository;
 
@@ -14,10 +15,12 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapping userMapping;
+    private final UserKafkaProducer userKafkaProducer;
 
-    public UserService(UserRepository userRepository, UserMapping userMapping) {
+    public UserService(UserRepository userRepository, UserMapping userMapping, UserKafkaProducer userKafkaProducer) {
         this.userRepository = userRepository;
         this.userMapping = userMapping;
+        this.userKafkaProducer = userKafkaProducer;
     }
 
     public Optional<UserDto> getUserById(Long id) {
@@ -26,6 +29,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
+        userKafkaProducer.sendUserToKafka(user);
         return userRepository.save(user);
     }
 
