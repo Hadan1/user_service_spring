@@ -1,4 +1,4 @@
-package user_service_spring.aston.repository;
+package user_service_spring.aston.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,10 +31,10 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
-    public User(String name, String email, Long age) {
-        this.name = name;
-        this.email = email;
-        this.age = age;
-        this.createdAt = LocalDateTime.now();
-    }
+//    public User(String name, String email, Long age) {
+//        this.name = name;
+//        this.email = email;
+//        this.age = age;
+//        this.createdAt = LocalDateTime.now();
+//    }
 }

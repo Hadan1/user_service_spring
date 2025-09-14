@@ -1,4 +1,4 @@
-package user_service_spring.aston.notification.service;
+package user_service_spring.aston.kafka;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.clients.producer.ProducerConfig;

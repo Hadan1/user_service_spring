@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: User API
+  description: CRUD API для управления пользователями
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080/api/users
+    description: Aston
+
+paths:
+  /{id}:
+    get:
+      summary: Получить пользователя по ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID пользователя
+      responses:
+        '200':
+          description: Успешное получение пользователя
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Пользователь не найден
+
+    put:
+      summary: Обновить пользователя по ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID пользователя для обновления
+      requestBody:
+        description: Новые данные пользователя
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Пользователь обновлён
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: Пользователь не найден
+
+    delete:
+      summary: Удалить пользователя по ID
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: ID пользователя для удаления
+      responses:
+        '204':
+          description: Пользователь успешно удалён
+        '404':
+          description: Пользователь не найден
+
+  /:
+    post:
+      summary: Создать нового пользователя
+      requestBody:
+        description: Данные для создания пользователя
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreateRequest'
+      responses:
+        '201':
+          description: Пользователь успешно создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: Уникальный идентификатор пользователя
+        username:
+          type: string
+          example: johndoe
+          description: Имя пользователя
+        email:
+          type: string
+          example: johndoe@example.com
+          description: Электронная почта пользователя
+        age:
+          type: integer
+          example: 30
+          description: Возраст пользователя
+      required:
+        - id
+        - username
+        - email
+
+    UserCreateRequest:
+      type: object
+      properties:
+        username:
+          type: string
+          example: johndoe
+          description: Имя пользователя
+        email:
+          type: string
+          example: johndoe@example.com
+          description: Электронная почта пользователя
+        age:
+          type: integer
+          example: 30
+          description: Возраст пользователя
+      required:
+        - username
+        - email

@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import user_service_spring.aston.dto.UserDto;
-import user_service_spring.aston.repository.User;
+import user_service_spring.aston.entity.User;
 import user_service_spring.aston.service.UserService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
@@ -24,8 +22,8 @@ public class UserController {
     }
 
     @PostMapping
-    public User createUser(@RequestBody User user) {
-        return userService.createUser(user);
+    public void createUser(@RequestBody User user) {
+        userService.createUser(user);
     }
 
     @PutMapping("/{id}")

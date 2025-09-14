@@ -1,4 +1,4 @@
-package user_service_spring.aston.notification.service;
+package user_service_spring.aston.kafka;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +18,6 @@ public class UserKafkaProducer {
 
     public void sendUserToKafka(User user) {
         kafkaTemplate.send("user_service_topic", user);
-        log.info("user sent to kafka");
+        log.info("User sent to kafka");
     }
 }
