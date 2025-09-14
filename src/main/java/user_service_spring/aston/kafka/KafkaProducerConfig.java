@@ -9,7 +9,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import user_service_spring.aston.repository.User;
+import user_service_spring.aston.entity.User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +18,7 @@ import java.util.Map;
 public class KafkaProducerConfig {
 
     @Bean
+    //объект для создание Producer
     public ProducerFactory<String, User> producerFactory(
             ObjectMapper objectMapper
     ) {

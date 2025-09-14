@@ -1,11 +1,10 @@
 package user_service_spring.aston.notification.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import user_service_spring.aston.repository.User;
+import user_service_spring.aston.entity.User;
 
 @Service
 public class UserKafkaProducer {
