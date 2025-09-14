@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import user_service_spring.aston.dto.UserDto;
 import user_service_spring.aston.entity.User;
+import user_service_spring.aston.kafka.UserKafkaProducer;
 import user_service_spring.aston.service.UserService;
+
 
 @RestController
 @RequestMapping("/api/users")
@@ -13,6 +15,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserKafkaProducer userKafkaProducer;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
@@ -24,6 +29,7 @@ public class UserController {
     @PostMapping
     public void createUser(@RequestBody User user) {
         userService.createUser(user);
+        userKafkaProducer.sendUserToKafka(user);
     }
 
     @PutMapping("/{id}")
