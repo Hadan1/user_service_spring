@@ -1,8 +1,0 @@
-POST https://localhost:8080/api/users/
-Content-Type: application/json
-
-{
-  "age": 10,
-  "name": "Boris",
-  "email": "boris@mail.ru"
-}
