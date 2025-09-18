@@ -1,10 +1,8 @@
-package aston.notification_service.kafka;
+package aston.notificationservice.kafka;
 
-
-import aston.notification_service.entity.User;
+import aston.notificationservice.entity.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 

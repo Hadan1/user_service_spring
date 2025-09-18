@@ -1,4 +1,4 @@
-package aston.notification_service.entity;
+package aston.notificationservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

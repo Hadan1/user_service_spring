@@ -10,7 +10,7 @@ import user_service_spring.aston.service.UserService;
 
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/")
 public class UserController {
 
     @Autowired
@@ -24,6 +24,11 @@ public class UserController {
         return userService.getUserById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/")
+        public String getUserById() {
+            return "String";
     }
 
     @PostMapping

@@ -1,5 +1,5 @@
 FROM openjdk:21
 WORKDIR /app
-COPY notification-service/notification-service.jar app.jar
-CMD ["java", "-jar", "app.jar"]
-EXPOSE 8761
+COPY user_service_spring/user_service_spring.jar user_service_spring.jar
+CMD ["java", "-jar", "user_service_spring.jar"]
+EXPOSE 8080

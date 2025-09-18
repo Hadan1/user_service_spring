@@ -1,5 +1,6 @@
 version: '3.7'
 services:
+
   zookeeper:
     image: zookeeper:latest
     hostname: zookeeper
@@ -15,3 +16,37 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  discovery-server:
+    build:
+      context: ./discovery-server
+      target: discovery-server
+    image: discovery-server:latest
+    ports:
+      - "8761:8761"
+
+  notification-service:
+    build:
+      context: ./notification-service
+    image: notification-service:latest
+    ports:
+      - "8082:8082"
+
+  user-service:
+    build:
+      context: ./user-service
+    image: user-service:latest
+    ports:
+      - "8080:8080"
+
+  db:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_DB: pg_database
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
